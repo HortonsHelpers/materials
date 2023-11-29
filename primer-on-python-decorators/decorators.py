@@ -84,10 +84,7 @@ def repeat(_func=None, *, num_times=2):
 
         return wrapper_repeat
 
-    if _func is None:
-        return decorator_repeat
-    else:
-        return decorator_repeat(_func)
+    return decorator_repeat if _func is None else decorator_repeat(_func)
 
 
 def count_calls(func):
@@ -128,10 +125,7 @@ def slow_down(_func=None, *, rate=1):
 
         return wrapper_slow_down
 
-    if _func is None:
-        return decorator_slow_down
-    else:
-        return decorator_slow_down(_func)
+    return decorator_slow_down if _func is None else decorator_slow_down(_func)
 
 
 def singleton(cls):

@@ -21,8 +21,7 @@ def scrape_jobs(location=None):
     page = requests.get(URL)
 
     soup = BeautifulSoup(page.content, "html.parser")
-    results = soup.find(id="ResultsContainer")
-    return results
+    return soup.find(id="ResultsContainer")
 
 
 def filter_jobs_by_keyword(results, word):
