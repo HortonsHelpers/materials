@@ -77,8 +77,7 @@ class Message:
         }
         jsonheader_bytes = self._json_encode(jsonheader, "utf-8")
         message_hdr = struct.pack(">H", len(jsonheader_bytes))
-        message = message_hdr + jsonheader_bytes + content_bytes
-        return message
+        return message_hdr + jsonheader_bytes + content_bytes
 
     def _process_response_json_content(self):
         content = self.response
@@ -187,7 +186,7 @@ class Message:
 
     def process_response(self):
         content_len = self.jsonheader["content-length"]
-        if not len(self._recv_buffer) >= content_len:
+        if len(self._recv_buffer) < content_len:
             return
         data = self._recv_buffer[:content_len]
         self._recv_buffer = self._recv_buffer[content_len:]
